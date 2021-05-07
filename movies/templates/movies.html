@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>List Movies</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'static/style.css' %}">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+</head>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#"><b>Lista de Filmes</b></a>
+            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> -->
+        </div>
+    </div>
+    <table class="table table-striped">
+        <tr><td style="width: 2px;">
+        </td><td><b>Título</b>
+        </td><td><b>Descrição</b></td>
+        </td><td><b>Score</b></td>
+        </td><td><b>Data</b></td>
+        </td><td><b>Diretor</b></td>
+        </td><td><b>Personagens</b></td>
+        </tr>
+        <tr>
+            {% for movie in movies %}
+            <td>
+            </td>
+            <td><p>{{ movie.title }}</p></td>
+            <td><p>{{ movie.description }}</p></td>
+            <td><p>{{ movie.rt_score }}</p></td>
+            <td><p>{{ movie.release_date }}</p></td>
+            <td><p>{{ movie.director }}</p></td>
+            <td>
+                <ul>
+                {% for people in movie.people %}
+                <li><a href={{ star.url }}>{{ people.name }}</a></li>
+                {% endfor %}
+                </ul>
+              </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- <script>
+
+    function myFunction() {
+    // Declare variables
+    var input, filter, tr, td, p, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            } else {
+            li[i].style.display = "none";
+            }
+        }
+    }
+    </script> -->
+</html>
